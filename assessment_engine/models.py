@@ -10,11 +10,17 @@ class Standard(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
 
+    def __str__(self) -> str:
+        return self.name
+
 class Subject(models.Model):
     name = models.CharField(max_length=255)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return self.name
 
 class QuestionBank(models.Model):
     title = models.CharField(max_length=255)
@@ -24,12 +30,18 @@ class QuestionBank(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
 
+    def __str__(self) -> str:
+        return self.title
+
 class Question(models.Model):
     question = models.CharField(max_length=255)
     question_bank = models.ForeignKey(QuestionBank, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return self.question
 
 class Answer(models.Model):
     answer = models.CharField(max_length=255)
@@ -38,6 +50,9 @@ class Answer(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return self.answer
 
 class QuestionWiseResult(models.Model):
     question_bank = models.ForeignKey(QuestionBank, on_delete=models.PROTECT)
